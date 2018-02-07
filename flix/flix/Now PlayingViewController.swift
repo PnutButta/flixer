@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -34,7 +35,6 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
                     
                 //Reload your table view data
                 self.tableView.reloadData()
-                
             }
         }
         task.resume()
@@ -52,6 +52,14 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        
+        let baseURLString = "https://image.tmdb.org/t/p/w500/"
+        let posterPath = movie["poster_path"] as! String
+        let posterURL = URL(string: baseURLString + posterPath)!
+        
+        if cell.poster != nil {
+            cell.poster.af_setImage(withURL: posterURL)
+        }
         
         return cell
     }
