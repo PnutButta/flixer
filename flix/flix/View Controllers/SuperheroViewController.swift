@@ -17,6 +17,12 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Superhero"
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.backgroundColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
+        }
+        
         collectionView.dataSource = self
         fetchMovies()
 
@@ -37,6 +43,17 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell =  sender as! UICollectionViewCell
+        if let indexPath = collectionView.indexPath(for: cell) {
+            let newMovie = movies[indexPath.item]
+            let destinationViewController = segue.destination as! DetailViewController
+            destinationViewController.movie = newMovie
+            let posterPath = newMovie["poster_path"] as! String
+            destinationViewController.photoUrl = posterPath
+        }
     }
     
     func fetchMovies() {
