@@ -78,7 +78,18 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
         }
         task.resume()
     }
-    
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell =  sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let newMovie = movies[indexPath.row]
+            let destinationViewController = segue.destination as! DetailViewController
+            destinationViewController.movie = newMovie
+            let posterPath = newMovie["poster_path"] as! String
+            destinationViewController.photoUrl = posterPath
+        }
+    }
+      
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
