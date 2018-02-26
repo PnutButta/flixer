@@ -23,11 +23,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="launch_image" translatesAutoresizingMaskIntoConstraints="NO" id="Awo-Ea-RXk">
-                                <rect key="frame" x="119" y="244" width="137" height="139"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" image="launch_image" translatesAutoresizingMaskIntoConstraints="NO" id="Awo-Ea-RXk">
+                                <rect key="frame" x="119" y="243" width="137" height="139"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flix" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWk-De-yTw">
-                                <rect key="frame" x="152" y="391" width="70" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flix" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWk-De-yTw">
+                                <rect key="frame" x="152" y="390" width="70" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -35,15 +36,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gWk-De-yTw" secondAttribute="trailing" constant="153" id="PIZ-7E-tH3"/>
                             <constraint firstItem="Awo-Ea-RXk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="119" id="UbQ-lf-nkj"/>
                             <constraint firstItem="Awo-Ea-RXk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="224" id="WAO-8O-hCB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Awo-Ea-RXk" secondAttribute="trailing" constant="119" id="amu-e1-nVc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Awo-Ea-RXk" secondAttribute="trailing" constant="119" id="dqt-cL-HTT"/>
-                            <constraint firstItem="gWk-De-yTw" firstAttribute="top" secondItem="Awo-Ea-RXk" secondAttribute="bottom" constant="8" id="ihC-Ek-ODa"/>
                             <constraint firstItem="Awo-Ea-RXk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="224" id="kg9-G2-AVb"/>
                             <constraint firstItem="Awo-Ea-RXk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="119" id="lci-tG-jXE"/>
-                            <constraint firstItem="gWk-De-yTw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="152" id="sot-tP-QIo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
