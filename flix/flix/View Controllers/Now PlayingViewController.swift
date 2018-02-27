@@ -18,6 +18,11 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Now Playing"
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.backgroundColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
+        }
+            
         refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(Now_PlayingViewController.pullToRefresh(_:)),
                           for: .valueChanged)
@@ -78,7 +83,18 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
         }
         task.resume()
     }
-    
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell =  sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let newMovie = movies[indexPath.row]
+            let destinationViewController = segue.destination as! DetailViewController
+            destinationViewController.movie = newMovie
+            let posterPath = newMovie["poster_path"] as! String
+            destinationViewController.photoUrl = posterPath
+        }
+    }
+      
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
