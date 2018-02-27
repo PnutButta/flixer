@@ -31,18 +31,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="207.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wonder Woman" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agC-Gf-q5e">
-                                                    <rect key="frame" x="172" y="22" width="168" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.34733939730000002" green="1" blue="0.274428279" alpha="0.53000000000000003" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Wonder Woman" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agC-Gf-q5e">
+                                                    <rect key="frame" x="172" y="22" width="169" height="23"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvP-mb-ZGO">
-                                                    <rect key="frame" x="172" y="56" width="177" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="0.51567297030000003" blue="0.30106120629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvP-mb-ZGO">
+                                                    <rect key="frame" x="172" y="53" width="169" height="117"/>
                                                     <string key="text">A businessman on his daily commute home gets unwittingly caught up in a criminal conspiracy that threatens not only his life but the lives of those around him.</string>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,15 +47,22 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQQ-u3-3L7">
                                                     <rect key="frame" x="23" y="19" width="148" height="173"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="148" id="6uX-Pw-CcX"/>
-                                                        <constraint firstAttribute="height" constant="173" id="NbQ-Eg-lHI"/>
+                                                        <constraint firstAttribute="width" constant="148" id="A0R-SL-5Xa"/>
+                                                        <constraint firstAttribute="height" constant="173" id="Vev-eL-UuY"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="HQQ-u3-3L7" firstAttribute="leading" secondItem="y7p-ly-CHp" secondAttribute="leadingMargin" constant="8" id="3Nu-Wc-TSa"/>
-                                                <constraint firstAttribute="bottom" secondItem="HQQ-u3-3L7" secondAttribute="bottom" constant="8" id="4lG-Bp-LVg"/>
-                                                <constraint firstItem="HQQ-u3-3L7" firstAttribute="top" secondItem="y7p-ly-CHp" secondAttribute="topMargin" constant="8" id="Jbw-F8-Bd2"/>
+                                                <constraint firstItem="HQQ-u3-3L7" firstAttribute="top" secondItem="y7p-ly-CHp" secondAttribute="topMargin" constant="8" id="3il-2h-9CD"/>
+                                                <constraint firstAttribute="trailing" secondItem="uvP-mb-ZGO" secondAttribute="trailing" constant="1" id="7el-kw-75A"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uvP-mb-ZGO" secondAttribute="bottom" constant="8" id="NAk-Zb-L5C"/>
+                                                <constraint firstItem="uvP-mb-ZGO" firstAttribute="top" secondItem="agC-Gf-q5e" secondAttribute="bottom" constant="8" id="NMh-9I-SGx"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="HQQ-u3-3L7" secondAttribute="bottom" constant="8" id="ShL-YL-D2d"/>
+                                                <constraint firstItem="agC-Gf-q5e" firstAttribute="leading" secondItem="HQQ-u3-3L7" secondAttribute="trailing" constant="1" id="UMS-Vp-iff"/>
+                                                <constraint firstItem="HQQ-u3-3L7" firstAttribute="leading" secondItem="y7p-ly-CHp" secondAttribute="leadingMargin" constant="8" id="bGR-LW-d11"/>
+                                                <constraint firstItem="uvP-mb-ZGO" firstAttribute="leading" secondItem="HQQ-u3-3L7" secondAttribute="trailing" constant="1" id="hO3-8L-goS"/>
+                                                <constraint firstAttribute="trailing" secondItem="agC-Gf-q5e" secondAttribute="trailing" constant="1" id="pXu-lt-7Dw"/>
+                                                <constraint firstItem="agC-Gf-q5e" firstAttribute="top" secondItem="y7p-ly-CHp" secondAttribute="top" constant="22" id="yK2-Jn-uH8"/>
                                             </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </tableViewCellContentView>
