@@ -16,7 +16,7 @@ class Movie {
     
     init(dictionary: [String: Any]) {
         title = dictionary["title"] as? String ?? "No title"
-        overview = (dictionary["overview"] as? String)!
+        overview = dictionary["overview"] as? String ?? "No Description"
         release_date = (dictionary["release_date"] as? String)!
         
         let baseURLString = "https://image.tmdb.org/t/p/w500/"
