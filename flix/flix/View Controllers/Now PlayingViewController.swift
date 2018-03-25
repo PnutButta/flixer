@@ -12,7 +12,7 @@ import AlamofireImage
 class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var movies: [[String : Any]] = []
+    var movies: [Movie] = []
     var refresh: UIRefreshControl!
     
     override func viewDidLoad() {
@@ -46,19 +46,15 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
+        let newMovie = movies[indexPath.row]
+        let title = newMovie.title
+        let overview = newMovie.overview
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
-        let baseURLString = "https://image.tmdb.org/t/p/w500/"
-        let posterPath = movie["poster_path"] as! String
-        let posterURL = URL(string: baseURLString + posterPath)!
-        
-        if cell.poster != nil {
-            cell.poster.af_setImage(withURL: posterURL)
+        if newMovie.posterUrl != nil {
+            cell.poster.af_setImage(withURL: newMovie.posterUrl!)
         }
         
         return cell
@@ -75,8 +71,8 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: [])
                     as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String : Any]]
-                self.movies = movies
+                let movieDictionaries = dataDictionary["results"] as! [[String : Any]]
+                self.movies = Movie.movies(dictionaries: movieDictionaries)
                 
                 //Reload your table view data
                 self.tableView.reloadData()
@@ -86,14 +82,14 @@ class Now_PlayingViewController: UIViewController, UITableViewDataSource, UITabl
         task.resume()
     }
    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell =  sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell) {
             let newMovie = movies[indexPath.row]
             let destinationViewController = segue.destination as! DetailViewController
             destinationViewController.movie = newMovie
-            let posterPath = newMovie["poster_path"] as! String
-            destinationViewController.photoUrl = posterPath
+            destinationViewController.photoUrl = newMovie.posterUrl
         }
     }
       

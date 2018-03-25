@@ -13,10 +13,14 @@ import AlamofireImage
 class SuperheroViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var movies: [[String : Any]] = []
+    var movies: [Movie] = []
+    var refresh: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(SuperheroViewController.pullToRefresh(_:)),
+                          for: .valueChanged)
         
         self.navigationItem.title = "Superhero"
         if let navigationBar = navigationController?.navigationBar {
@@ -28,6 +32,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
 
         // Do any additional setup after loading the view.
     }
+    
+    @objc func  pullToRefresh(_ refresh: UIRefreshControl) {
+        fetchMovies()
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
@@ -35,13 +43,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCell", for: indexPath) as! PosterCell
-        let movie = movies[indexPath.item]
-        if let posterPathString = movie["poster_path"] as? String {
-             let baseURLString = "https://image.tmdb.org/t/p/w500/"
-            let posterURL = URL(string: baseURLString + posterPathString)!
-            cell.posterImageView.af_setImage(withURL: posterURL)
+        let newMovie = movies[indexPath.item]
+        if newMovie.posterUrl != nil {
+            cell.posterImageView.af_setImage(withURL: newMovie.posterUrl!)
         }
-        
         return cell
     }
     
@@ -51,8 +56,7 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
             let newMovie = movies[indexPath.item]
             let destinationViewController = segue.destination as! DetailViewController
             destinationViewController.movie = newMovie
-            let posterPath = newMovie["poster_path"] as! String
-            destinationViewController.photoUrl = posterPath
+            destinationViewController.photoUrl = newMovie.posterUrl
         }
     }
     
@@ -67,12 +71,12 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: [])
                     as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String : Any]]
-                self.movies = movies
+                let movieDictionaries = dataDictionary["results"] as! [[String : Any]]
+                self.movies = Movie.movies(dictionaries: movieDictionaries)
                 
                 //Reload your table view data
                 self.collectionView.reloadData()
-                //self.refresh.endRefreshing()
+                self.refresh.endRefreshing()
             }
         }
         task.resume()

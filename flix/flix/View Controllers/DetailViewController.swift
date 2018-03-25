@@ -11,7 +11,7 @@ import AlamofireImage
 
 enum MovieKeys {
     static let backdropPath = "backdrop_path"
-    static let posterPath = "poster_pride"
+    static let posterPath = "poster_path"
 }
 
 class DetailViewController: UIViewController {
@@ -21,9 +21,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
-    var photoUrl: String!
+    var photoUrl: URL!
     
-    var movie: [String: Any]?
+    var movie: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,22 +31,16 @@ class DetailViewController: UIViewController {
         posterImageView.layer.borderColor = UIColor.white.cgColor
         
         if let movie = movie {
-            titleLabel.text = movie["title"] as? String
-            releaseLabel.text = movie["release_date"] as? String
-            overviewLabel.text = movie["overview"] as? String
-            
-            let baseURLString = "https://image.tmdb.org/t/p/w500/"
-            
-            //let posterPath = movie[MovieKeys.posterPath] as! String
+            titleLabel.text = movie.title
+            releaseLabel.text = movie.release_date
+            overviewLabel.text = movie.overview
+
             if posterImageView != nil {
-             let posterURL = URL(string: baseURLString + photoUrl)!
-                posterImageView.af_setImage(withURL: posterURL)
+                posterImageView.af_setImage(withURL: movie.posterUrl!)
             }
-            
-            let backgroundPath = movie[MovieKeys.backdropPath] as! String
+
             if backgroundImageView != nil {
-                let backdropURL = URL(string: baseURLString + backgroundPath)!
-                backgroundImageView.af_setImage(withURL: backdropURL)
+                backgroundImageView.af_setImage(withURL: movie.backdropUrl!)
             }
         }
     
